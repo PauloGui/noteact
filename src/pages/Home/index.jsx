@@ -1,5 +1,6 @@
 import React from 'react'
 import SideBar from '../../components/SideBar'
+import Banner from '../../components/Banner'
 import {Container, SideMenu, Content} from './style'
 
 function Home() {
@@ -8,7 +9,9 @@ function Home() {
       <SideMenu>
         <SideBar />
       </SideMenu>
-      <Content></Content>
+      <Content>
+        <Banner />
+      </Content>
     </Container>
   )
 }

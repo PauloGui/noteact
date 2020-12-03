@@ -84,6 +84,8 @@ export const  LinkNote = styled.a`
   border-radius: 5px;
   text-decoration: none;
   color: #000;
+  transition: 0.2s;
+  cursor: pointer;
 
   :hover {
       background: ${shade(0.2, '#14CC45')};
