@@ -19,7 +19,7 @@ export const  ContainerTop = styled.div`
 export const  User = styled.div`
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 5px;
 `
 
 export const  ImgUser = styled.img`
@@ -33,11 +33,11 @@ export const  NameUser = styled.div`
 export const  Buttons = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 10px;
+  padding: 10px 0;
 `
 
 export const  Button = styled.button`
-  padding: 5px 10px;
+  padding: 5px 15px;
   margin: 10px 0 0 5px;
   border-radius: 5px;
   background: transparent;
