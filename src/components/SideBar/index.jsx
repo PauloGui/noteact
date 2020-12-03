@@ -10,9 +10,11 @@ import {
   AllNotes,
   Span,
   Input,
-  LinkNote
+  LinkNote,
+  Logo
 } from './style'
 import ImageUser from '../../assets/user.png'
+import ImageLogo from '../../assets/logo.png'
 
 function SideBar() {
   return (
@@ -39,6 +41,7 @@ function SideBar() {
         <LinkNote href="/">Detalhes da nota</LinkNote>
         <LinkNote href="/">Detalhes da nota</LinkNote>
         <LinkNote href="/">Detalhes da nota</LinkNote>
+        <Logo src={ImageLogo} />
       </AllNotes>
     </Container>
   )

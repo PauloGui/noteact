@@ -93,3 +93,10 @@ export const  LinkNote = styled.a`
       border: 0;
     }
 `
+
+export const Logo = styled.img`
+  position: absolute;
+  bottom: 0;
+  width: 200px;
+  padding: 20px;
+`
