@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { shade } from 'polished'
 
 export const Container = styled.div`
     display: flex;
@@ -40,6 +41,12 @@ export const Button = styled.button`
     border: 0;
     background: var(--color-green);
     color: #FFF;
+    cursor: pointer;
+    transition: 0.2s;
+
+    :hover{
+        background: ${shade(0.2, '#14CC45')}
+    }
 `
 
 export const LinkA = styled.a`
