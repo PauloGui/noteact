@@ -2,6 +2,7 @@ import React from 'react'
 import SideBar from '../../components/SideBar'
 import Banner from '../../components/Banner'
 import {Container, SideMenu, Content} from './style'
+import Form from '../Form'
 
 function Home() {
   return(
@@ -10,7 +11,8 @@ function Home() {
         <SideBar />
       </SideMenu>
       <Content>
-        <Banner />
+        {/* <Banner /> */}
+        <Form />
       </Content>
     </Container>
   )

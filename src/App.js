@@ -1,5 +1,4 @@
 import React from 'react'
-import Profile from './components/Profile'
 import Global from './global'
 
 import Home from './pages/Home'
