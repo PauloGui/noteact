@@ -49,7 +49,7 @@ export const Button = styled.button`
     }
 `
 
-export const LinkA = styled.a`
+export const LinkA = styled.button`
     font-size: 14px;
     color: var(--color-green);
     padding: 20px;

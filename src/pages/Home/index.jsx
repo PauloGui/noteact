@@ -1,18 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import SideBar from '../../components/SideBar'
 import Banner from '../../components/Banner'
-import {Container, SideMenu, Content} from './style'
+import { Container, SideMenu, Content } from './style'
 import Form from '../Form'
+import Profile from '../../components/Profile'
 
 function Home() {
-  return(
+
+  const [showProfile, setShowProfile] = useState(false);
+
+  return (
     <Container>
       <SideMenu>
-        <SideBar />
+        <SideBar showProfile={showProfile} setShowProfile={setShowProfile} />
       </SideMenu>
       <Content>
-        {/* <Banner /> */}
-        <Form />
+        <Banner />
+        {
+          showProfile &&
+          <Profile />
+        }
       </Content>
     </Container>
   )
