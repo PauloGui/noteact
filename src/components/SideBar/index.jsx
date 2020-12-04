@@ -16,7 +16,7 @@ import {
 import ImageUser from '../../assets/user.png'
 import ImageLogo from '../../assets/logo.png'
 
-function SideBar() {
+function SideBar({ showProfile, setShowProfile }) {
   return (
     <Container>
       <ContainerTop>
@@ -25,7 +25,7 @@ function SideBar() {
           <NameUser>João da Silva</NameUser>
         </User>
         <Buttons>
-          <Button>Meus dados</Button>
+          <Button onClick={() => setShowProfile(!showProfile)}>Meus dados</Button>
           <Button>Sair</Button>
         </Buttons>
         <hr />
