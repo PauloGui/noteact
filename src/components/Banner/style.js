@@ -8,7 +8,6 @@ export const Container = styled.div`
     flex: 1;
     flex-direction: column;
     height: 100vh;
-    overflow: hidden;
 `
 
 export const ImgTitle = styled.img`
@@ -23,22 +22,13 @@ export const Img = styled.img`
 `
 
 export const Button = styled.button`
-  display:flex;
-  justify-content:center;
-  align-items:center;
   height:45px;
   border:0;
-  background-color:#14CC45;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 19px;
-  border-radius:3px;
-  text-decoration: none;
+  background-color: var(--color-green);
   outline: none;
-  color: white;
-  margin:30px;
-  padding:10px 80px;
+  padding: 10px 40px;
+  margin: 10px;
+  color: #FFF;
   cursor: pointer;
   transition: 0.2s;
 

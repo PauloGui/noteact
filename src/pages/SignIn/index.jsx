@@ -6,7 +6,9 @@ function SignIn({ history }) {
   return (
     <Container>
       <Box>
-        <Logo src={ImgLogo} />
+        <LinkA linklogo onClick={() => history.push('/')}>
+          <Logo src={ImgLogo} />
+        </LinkA>
         <Span>Lembre-se de tudo que importa.</Span>
         <Input placeholder="Email" />
         <Input placeholder="Senha" />

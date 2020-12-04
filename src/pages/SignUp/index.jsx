@@ -6,7 +6,9 @@ function SignUp({ history }) {
   return (
     <Container>
       <Box>
-        <Logo src={ImgLogo} />
+        <LinkA linklogo onClick={() => history.push('/')}>
+          <Logo src={ImgLogo} />
+        </LinkA>
         <Span>Assuma o controle de suas anotações.</Span>
         <Input placeholder="Nome" />
         <Input placeholder="Email" />

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import {shade} from 'polished'
 
 export const Container = styled.div`
@@ -51,7 +51,14 @@ export const Button = styled.button`
 
 export const LinkA = styled.button`
     font-size: 14px;
+    border: 0;
+    background: transparent;
     color: var(--color-green);
-    padding: 20px;
+    outline: none;
+    margin: 10px;
     cursor: pointer;
+
+    ${props => props.linklogo && css`
+      margin:0;
+    `}
 `
