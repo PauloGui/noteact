@@ -38,6 +38,7 @@ export const Input = styled.input`
   border-radius: 5px;
   border: 1px solid #ccc;
   margin-top: 5px;
+  outline: none;
 `
 
 export const Button = styled.button`
@@ -47,6 +48,7 @@ export const Button = styled.button`
   border-radius: 5px;
   color: #FFF;
   background: var(--color-green);
+  outline: none;
 
   :hover {
     background: ${shade(0.2, '#14CC45')}

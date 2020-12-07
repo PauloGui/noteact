@@ -30,6 +30,7 @@ export const Span = styled.span`
 export const Input = styled.input`
     margin: 5px;
     padding: 10px;
+    outline: none;
     width: 325px;
     border: 1px solid #ccc;
 `

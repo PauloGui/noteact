@@ -40,6 +40,7 @@ export const  Button = styled.button`
   padding: 5px 15px;
   margin: 10px 0 0 5px;
   border-radius: 5px;
+  outline: none;
   background: transparent;
   color: var(--color-green);
   border: 1px solid var(--color-green);
