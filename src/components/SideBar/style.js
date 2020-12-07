@@ -24,6 +24,9 @@ export const  User = styled.div`
 
 export const  ImgUser = styled.img`
   width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
 `
 
 export const  NameUser = styled.div`
