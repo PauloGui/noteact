@@ -1,11 +1,11 @@
-import React, { Fragment } from 'react';
-import { useAuth } from '../hooks/AuthProvider';
-import PublicRoutes from './PublicRoutes';
-import PrivateRoutes from './PrivateRoutes';
+import React, { Fragment } from 'react'
+import { useAuth } from '../hooks/AuthProvider'
+import PublicRoutes from './PublicRoutes'
+import PrivateRoutes from './PrivateRoutes'
 
 function Routes() {
 
-  const { authUser } = useAuth();
+  const { authUser } = useAuth()
 
   return (
     <Fragment>
@@ -18,7 +18,7 @@ function Routes() {
         <PublicRoutes />
       }
     </Fragment>
-  );
+  )
 }
 
-export default Routes;
+export default Routes

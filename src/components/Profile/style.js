@@ -11,6 +11,7 @@ export const Container = styled.div`
   position: absolute;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 20px;
+  background: #FFF;
 `
 export const Span = styled.span`
   padding: 20px;

@@ -1,15 +1,15 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom'
 
 import { Container, ImgTitle, ImgSub, Img, Button } from './style'
 import ImageTitle from '../../assets/title.png'
 import ImageSub from '../../assets/sub.png'
 import Image from '../../assets/img.png'
-import { useAuth } from '../../hooks/AuthProvider';
+import { useAuth } from '../../hooks/AuthProvider'
 
 function Banner({ history }) {
 
-  const { authUser: { authenticated } } = useAuth();
+  const { authUser: { authenticated } } = useAuth()
 
   return (
     <Container>
