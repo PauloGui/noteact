@@ -8,6 +8,7 @@ export const Container = styled.div`
   height: 100vh;
   align-items: center;
   z-index: 2;
+  top: 0;
   position: absolute;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 20px;
@@ -26,6 +27,7 @@ export const Span = styled.span`
 
 export const ImgProfile = styled.img`
   width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
 `

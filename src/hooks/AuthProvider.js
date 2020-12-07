@@ -10,7 +10,7 @@ function AuthProvider({ children }) {
 
   useEffect(() => {
     const token = localStorage.getItem('@noteact_token')
-    if (!token) return
+    if (!token) return setLoading(false)
 
     api.get('/sessions', { headers: { Authorization: `Bearer ${token}` } }).then(({ data }) => {
       if (data.success) setAuthUser({ authenticated: true, token })

@@ -25,7 +25,7 @@ function Profile({ match }) {
   const [confNewPass, setConfNewPass] = useState('')
 
   useEffect(() => {
-    api.get('users', { headers: { Authorization: `Bearer ${authUser.token} ` } }).then(resp => {
+    api.get('/users', { headers: { Authorization: `Bearer ${authUser.token} ` } }).then(resp => {
       setName(resp.data.user.name)
       setEmail(resp.data.user.email)
       setFile(resp.data.user.file)
@@ -72,9 +72,8 @@ function Profile({ match }) {
         }}
         style={{
           marginRight: '100',
-          color: 'var(--color-comments)',
           borderRadius: '50%',
-          border: '1px solid #999', cursor: 'pointer'
+          cursor: 'pointer'
         }} />
       <ImgProfile src={file || ImageUser} alt="Foto de perfil" />
       <Input
