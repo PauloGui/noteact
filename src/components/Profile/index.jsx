@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import {
   Container,
   Span,
@@ -10,8 +10,10 @@ import ImageUser from '../../assets/user.png'
 import { MdAddAPhoto } from 'react-icons/md'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 import { useAuth } from '../../hooks/AuthProvider'
+import api from '../../services/api'
 
 function Profile({ match }) {
+
   const { authUser } = useAuth()
   const inputFile = useRef(null)
   const [name, setName] = useState('')

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { Container, Box, Logo, Span, Input, LinkA, Button } from './style'
 import ImgLogo from '../../assets/logo.png'
 import api from '../../services/api'
@@ -26,6 +26,7 @@ function SignUp({ history }) {
     api.post('/users', { name, email, password, confirmPassword }).then(resp => {
       if (resp.data.success) {
         setLoading(false)
+        history.push('/')
         setAuthUser({ authenticated: true, token: resp.data.auth })
         localStorage.setItem('@noteact_token', resp.data.auth)
         return
@@ -37,7 +38,7 @@ function SignUp({ history }) {
     })
   }
 
-  
+
   return (
     <Container>
       <Box>

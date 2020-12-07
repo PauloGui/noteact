@@ -16,7 +16,7 @@ import {
 import ImageUser from '../../assets/user.png'
 import ImageLogo from '../../assets/logo.png'
 
-function SideBar({ showProfile, setShowProfile }) {
+function SideBar({ showProfile, setShowProfile, history }) {
   return (
     <Container>
       <ContainerTop>
@@ -30,19 +30,19 @@ function SideBar({ showProfile, setShowProfile }) {
         </Buttons>
         <hr />
       </ContainerTop>
-      <Button addNote>Adicionar nota</Button>
+      <Button addNote onClick={() => history.push('/add')}>Adicionar nota</Button>
 
       <AllNotes>
         <Span>Todas as Notas</Span>
         <hr />
 
         <Input placeholder="Pesquisar" />
-        <LinkNote href="/">Detalhes da nota</LinkNote>
-        <LinkNote href="/">Detalhes da nota</LinkNote>
-        <LinkNote href="/">Detalhes da nota</LinkNote>
-        <LinkNote href="/">Detalhes da nota</LinkNote>
-        <Logo src={ImageLogo} />
+        <LinkNote onClick={() => history.push('/edit/1')}>Detalhes da nota</LinkNote>
+        <LinkNote onClick={() => history.push('/edit/1')}>Detalhes da nota</LinkNote>
+        <LinkNote onClick={() => history.push('/edit/1')}>Detalhes da nota</LinkNote>
+        <LinkNote onClick={() => history.push('/edit/1')}>Detalhes da nota</LinkNote>
       </AllNotes>
+      <Logo src={ImageLogo} />
     </Container>
   )
 }

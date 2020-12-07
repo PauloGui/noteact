@@ -60,7 +60,9 @@ export const  Button = styled.button`
 
 export const  AllNotes = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: column;
+  overflow: auto;
 `
 
 export const  Span = styled.span`
@@ -76,7 +78,7 @@ export const  Input = styled.input`
   border-radius: 5px;
 `
 
-export const  LinkNote = styled.a`
+export const  LinkNote = styled.p`
   background: #ccc;
   border-left: 4px solid var(--color-green);
   padding: 10px;
@@ -95,7 +97,7 @@ export const  LinkNote = styled.a`
 `
 
 export const Logo = styled.img`
-  position: absolute;
+
   bottom: 0;
   width: 200px;
   padding: 20px;

@@ -1,8 +1,12 @@
-import styled,{css} from 'styled-components'
-import {shade} from 'polished'
+import styled, { css } from 'styled-components'
+import { shade } from 'polished'
 
 export const Container = styled.div`
  padding: 20px;
+ height: 100%;
+ display: flex;
+ flex-direction: column;
+ overflow: auto;
 `
 
 export const ContainerTitle = styled.div`
@@ -40,4 +44,7 @@ export const Button = styled.button`
 `
 
 export const EditMd = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 `

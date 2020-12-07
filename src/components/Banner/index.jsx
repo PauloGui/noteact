@@ -5,15 +5,18 @@ import { Container, ImgTitle, ImgSub, Img, Button } from './style'
 import ImageTitle from '../../assets/title.png'
 import ImageSub from '../../assets/sub.png'
 import Image from '../../assets/img.png'
+import { useAuth } from '../../hooks/AuthProvider';
 
-function Banner({ history, location }) {
+function Banner({ history }) {
+
+  const { authUser: { authenticated } } = useAuth();
 
   return (
     <Container>
       <ImgTitle src={ImageTitle} />
       <ImgSub src={ImageSub} />
       {
-        location && location.pathname === '/' &&
+        !authenticated &&
         <Button onClick={() => history.push('/signup')}>Cadastre-se</Button>
       }
       <Img src={Image} />
