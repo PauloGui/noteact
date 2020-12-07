@@ -15,8 +15,11 @@ import {
 } from './style'
 import ImageUser from '../../assets/user.png'
 import ImageLogo from '../../assets/logo.png'
+import {useAuth} from '../../hooks/AuthProvider'
 
 function SideBar({ showProfile, setShowProfile, history }) {
+
+  const { setAuthUser } = useAuth()
   return (
     <Container>
       <ContainerTop>
@@ -26,7 +29,10 @@ function SideBar({ showProfile, setShowProfile, history }) {
         </User>
         <Buttons>
           <Button onClick={() => setShowProfile(!showProfile)}>Meus dados</Button>
-          <Button>Sair</Button>
+          <Button onClick={() => {
+              localStorage.removeItem('@noteact_token')
+              setAuthUser({ authenticated: false })
+            }}>Sair</Button>
         </Buttons>
         <hr />
       </ContainerTop>

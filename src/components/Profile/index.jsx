@@ -28,7 +28,7 @@ function Profile({ match }) {
     api.get('/users', { headers: { Authorization: `Bearer ${authUser.token} ` } }).then(resp => {
       setName(resp.data.user.name)
       setEmail(resp.data.user.email)
-      setFile(resp.data.user.file)
+      setFile(resp.data.user.image)
     })
   }, [match.params.id])
 
@@ -54,7 +54,8 @@ function Profile({ match }) {
       formData.append('currentPassword', currentPassword)
       formData.append('newPassword', newPassword)
     }
-    api.put(`/users`, formData).then(resp => {
+    api.put(`/users`, formData, 
+    { headers: { Authorization: `Bearer ${authUser.token} ` } }).then(resp => {
       return alert('Dados alterados com sucesso!')
     })
   }
