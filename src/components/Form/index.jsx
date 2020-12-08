@@ -18,8 +18,8 @@ export default function Form({ edit, refreshList, match }) {
       api.get(`/notes/${match.params.id}`,
         { headers: { Authorization: `Bearer ${authUser.token} ` } }).then(resp => {
           if (resp.data.success) {
-            setTitle(resp.data.title)
-            setContent(resp.data.content)
+            setTitle(resp.data.note.title)
+            setContent(resp.data.note.content)
           }
         })
     }
@@ -40,7 +40,7 @@ export default function Form({ edit, refreshList, match }) {
 
   const editNote = () => {
     setLoading(true)
-    api.put(`/notes/${match.params.id}`, { title, content },
+    api.put('/notes', { title, content, noteId :  match.params.id},
       { headers: { Authorization: `Bearer ${authUser.token} ` } }).then(resp => {
         setLoading(false)
         refreshList()
