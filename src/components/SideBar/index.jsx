@@ -69,12 +69,13 @@ function SideBar({ showProfile, setShowProfile, history, match }) {
       <Span>Todas as Notas</Span>
       <hr />
       <Input placeholder="Pesquisar" />
+      
+      <AllNotes>
+        {notes.map(note => (
+          <LinkNote key={note.id} onClick={() => history.push('/edit/1')}>{note.title}</LinkNote>
+        ))}
+      </AllNotes>
 
-      {notes.map(note => (
-        <AllNotes key={note.id}>
-          <LinkNote onClick={() => history.push('/edit/1')}>{note.title}</LinkNote>
-        </AllNotes>
-      ))}
       <Logo src={ImageLogo} />
     </Container>
   )
