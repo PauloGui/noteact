@@ -93,7 +93,7 @@ function SideBar({ showProfile, setShowProfile, history, notes, loading }) {
         }
       </AllNotes>
 
-      <Logo src={ImageLogo} />
+      <Logo onClick={() => history.push('/')} src={ImageLogo} />
     </Container>
   )
 }

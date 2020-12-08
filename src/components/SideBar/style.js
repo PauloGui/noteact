@@ -105,4 +105,5 @@ export const Logo = styled.img`
   bottom: 0;
   width: 200px;
   padding: 20px;
+  cursor: pointer;
 `
