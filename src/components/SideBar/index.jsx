@@ -25,6 +25,7 @@ function SideBar({ showProfile, setShowProfile, history, match }) {
   const [file, setFile] = useState('')
   const [search, setSearch] = useState('')
   const [notes, setNotes] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     api.get('/users', { headers: { Authorization: `Bearer ${authUser.token} ` } }).then(resp => {
@@ -38,12 +39,15 @@ function SideBar({ showProfile, setShowProfile, history, match }) {
   }, [])
 
   const refreshList = () => {
+    setLoading(true)
     api.get('/notes', { headers: { Authorization: `Bearer ${authUser.token} ` } }).then(resp => {
       if (resp.data.success) {
+        setLoading(false)
         return setNotes(resp.data.notes)
       }
       alert(resp.data.message)
     }).catch((err) => {
+      setLoading(false)
       return alert('Não foi possível localizar as notas')
     })
   }
@@ -71,7 +75,7 @@ function SideBar({ showProfile, setShowProfile, history, match }) {
       <Input placeholder="Pesquisar" />
       
       <AllNotes>
-        {notes.map(note => (
+        {!loading && notes.map(note => (
           <LinkNote key={note.id} onClick={() => history.push('/edit/1')}>{note.title}</LinkNote>
         ))}
       </AllNotes>

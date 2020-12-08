@@ -4,7 +4,7 @@ import { Container, ContainerTitle, Input, Button, EditMd } from './styles'
 import api from '../../services/api'
 import { useAuth } from '../../hooks/AuthProvider'
 
-export default function Form({ edit }) {
+export default function Form({ edit, refreshList }) {
 
   const { authUser } = useAuth()
 
@@ -17,6 +17,7 @@ export default function Form({ edit }) {
     api.post('/notes', { title, content },
       { headers: { Authorization: `Bearer ${authUser.token} ` } }).then(resp => {
         setLoading(false)
+        refreshList()
         return alert('Nota nota adicionada')
       }).catch((err) => {
         setLoading(false)
