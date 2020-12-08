@@ -24,7 +24,7 @@ function SideBar({ showProfile, setShowProfile, history, match }) {
   const [name, setName] = useState('')
   const [file, setFile] = useState('')
   const [search, setSearch] = useState('')
-  const [notes, setNotes] = useState('')
+  const [notes, setNotes] = useState([])
 
   useEffect(() => {
     api.get('/users', { headers: { Authorization: `Bearer ${authUser.token} ` } }).then(resp => {
@@ -34,6 +34,10 @@ function SideBar({ showProfile, setShowProfile, history, match }) {
   }, [])
 
   useEffect(() => {
+    refreshList()
+  }, [])
+
+  const refreshList = () => {
     api.get('/notes', { headers: { Authorization: `Bearer ${authUser.token} ` } }).then(resp => {
       if (resp.data.success) {
         return setNotes(resp.data.notes)
@@ -41,14 +45,6 @@ function SideBar({ showProfile, setShowProfile, history, match }) {
       alert(resp.data.message)
     }).catch((err) => {
       return alert('Não foi possível localizar as notas')
-    })
-  }, [])
-
-  const searchBox = () => {
-    api.get(`/notes?search=${search}`, { headers: { Authorization: `Bearer ${authUser.token} ` } }).then(resp => {
-      return setNotes(resp.data.notes.title)
-    }).catch((err) => {
-      alert('Nota não encontrada!')
     })
   }
 
@@ -68,19 +64,11 @@ function SideBar({ showProfile, setShowProfile, history, match }) {
         </Buttons>
         <hr />
       </ContainerTop>
-      <Button addNote onClick={() => history.push('/add')}>Adicionar nota</Button>
+      <Button addNote onClick={() => history.push('/add')} refreshList={refreshList}>Adicionar nota</Button>
 
       <Span>Todas as Notas</Span>
       <hr />
-      <Input
-        value={search}
-        onChange={e => setSearch(e.target.value)}
-        onKeyPress={e => {
-          if (e.key === 'Enter') {
-            searchBox()
-          }
-        }}
-        placeholder="Pesquisar" />
+      <Input placeholder="Pesquisar" />
 
       {notes.map(note => (
         <AllNotes key={note.id}>
