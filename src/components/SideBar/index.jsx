@@ -17,15 +17,14 @@ import api from '../../services/api'
 import ImageLogo from '../../assets/logo.png'
 import { useAuth } from '../../hooks/AuthProvider'
 
-function SideBar({ showProfile, setShowProfile, history, match }) {
+function SideBar({ showProfile, setShowProfile, history, notes, loading }) {
 
   const { authUser, setAuthUser } = useAuth()
 
   const [name, setName] = useState('')
   const [file, setFile] = useState('')
   const [search, setSearch] = useState('')
-  const [notes, setNotes] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [notesFilter, setNotesFilter] = useState([])
 
   useEffect(() => {
     api.get('/users', { headers: { Authorization: `Bearer ${authUser.token} ` } }).then(resp => {
@@ -35,22 +34,16 @@ function SideBar({ showProfile, setShowProfile, history, match }) {
   }, [])
 
   useEffect(() => {
-    refreshList()
-  }, [])
-
-  const refreshList = () => {
-    setLoading(true)
-    api.get('/notes', { headers: { Authorization: `Bearer ${authUser.token} ` } }).then(resp => {
-      if (resp.data.success) {
-        setLoading(false)
-        return setNotes(resp.data.notes)
-      }
-      alert(resp.data.message)
-    }).catch((err) => {
-      setLoading(false)
-      return alert('Não foi possível localizar as notas')
-    })
-  }
+    if (!!search) {
+      const filters = notes.filter(({ title }) => {
+        const titleLower = title.toLowerCase();
+        const searchLower = search.toLowerCase();
+        return titleLower.indexOf(searchLower) > -1;
+      });
+      return setNotesFilter(filters);
+    }
+    setNotesFilter([]);
+  }, [search])
 
   return (
     <Container>
@@ -68,16 +61,36 @@ function SideBar({ showProfile, setShowProfile, history, match }) {
         </Buttons>
         <hr />
       </ContainerTop>
-      <Button addNote onClick={() => history.push('/add')} refreshList={refreshList}>Adicionar nota</Button>
+      <Button addNote onClick={() => history.push('/add')}>Adicionar nota</Button>
 
       <Span>Todas as Notas</Span>
       <hr />
-      <Input placeholder="Pesquisar" />
-      
+      <Input placeholder="Pesquisar" value={search} onChange={e => setSearch(e.target.value)} />
+
       <AllNotes>
-        {!loading && notes.map(note => (
-          <LinkNote key={note.id} onClick={() => history.push('/edit/1')}>{note.title}</LinkNote>
-        ))}
+        {
+          loading && 'Carregando...'
+        }
+        {
+          (!loading && !search && !!notes.length) &&
+          notes.map(note => (
+            <LinkNote key={note.id} onClick={() => history.push('/edit/' + note.id)}>{note.title}</LinkNote>
+          ))
+        }
+        {
+          (!loading && !search && !notes.length) &&
+          'Lista vazia'
+        }
+        {
+          (!loading && !!search && !!notesFilter.length) &&
+          notesFilter.map(note => (
+            <LinkNote key={note.id} onClick={() => history.push('/edit/' + note.id)}>{note.title}</LinkNote>
+          ))
+        }
+        {
+          (!loading && !!search && !notesFilter.length) &&
+          'Não encontrado'
+        }
       </AllNotes>
 
       <Logo src={ImageLogo} />

@@ -1,10 +1,10 @@
-import React, { useState } from "react"
+import React, { useState, useEffect, Fragment } from "react"
 import MDEditor from '@uiw/react-md-editor'
 import { Container, ContainerTitle, Input, Button, EditMd } from './styles'
 import api from '../../services/api'
 import { useAuth } from '../../hooks/AuthProvider'
 
-export default function Form({ edit, refreshList }) {
+export default function Form({ edit, refreshList, match }) {
 
   const { authUser } = useAuth()
 
@@ -12,17 +12,52 @@ export default function Form({ edit, refreshList }) {
   const [title, setTitle] = useState("")
   const [loading, setLoading] = useState(false)
 
+  useEffect(() => {
+    if (edit) {
+      // match.params.id
+      api.get(`/notes/${match.params.id}`,
+        { headers: { Authorization: `Bearer ${authUser.token} ` } }).then(resp => {
+          if (resp.data.success) {
+            setTitle(resp.data.title)
+            setContent(resp.data.content)
+          }
+        })
+    }
+  }, [match.params.id])
+
   const submitNote = () => {
     setLoading(true)
     api.post('/notes', { title, content },
       { headers: { Authorization: `Bearer ${authUser.token} ` } }).then(resp => {
         setLoading(false)
         refreshList()
-        return alert('Nota nota adicionada')
+        return alert('Nota adicionada')
       }).catch((err) => {
         setLoading(false)
         return alert('Não foi possível salvar a nota!')
       })
+  }
+
+  const editNote = () => {
+    setLoading(true)
+    api.put(`/notes/${match.params.id}`, { title, content },
+      { headers: { Authorization: `Bearer ${authUser.token} ` } }).then(resp => {
+        setLoading(false)
+        refreshList()
+        return alert('Nota atualizada')
+      }).catch((err) => {
+        setLoading(false)
+        return alert('Não foi possível salvar a nota!')
+      })
+  }
+
+  const removeNote = () => {
+    setLoading(true)
+    api.delete(`/notes/${match.params.id}`, { headers: { Authorization: `Bearer ${authUser.token} ` } }).then(resp => {
+      setLoading(false)
+      refreshList()
+      return alert('Nota excluída!')
+    })
   }
 
   return (
@@ -31,9 +66,13 @@ export default function Form({ edit, refreshList }) {
         <Input
           value={title}
           onChange={e => setTitle(e.target.value)}
-          placeholder="Título da nota" />
-        <Button delete>Excluir</Button>
-        <Button onClick={submitNote}> {loading ? 'Salvando' : 'Salvar'}</Button>
+          placeholder="Título da nota"
+        />
+        {
+          edit &&
+          <Button onClick={removeNote} delete>Excluir</Button>
+        }
+        <Button onClick={edit ? editNote : submitNote}> {loading ? 'Salvando' : 'Salvar'}</Button>
       </ContainerTitle>
       <EditMd>
         <MDEditor
