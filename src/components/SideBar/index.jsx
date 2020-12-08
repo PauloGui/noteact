@@ -33,9 +33,20 @@ function SideBar({ showProfile, setShowProfile, history, match }) {
     })
   }, [])
 
+  useEffect(() => {
+    api.get('/notes', { headers: { Authorization: `Bearer ${authUser.token} ` } }).then(resp => {
+      if (resp.data.success) {
+        return setNotes(resp.data.notes)
+      }
+      alert(resp.data.message)
+    }).catch((err) => {
+      return alert('Não foi possível localizar as notas')
+    })
+  }, [])
+
   const searchBox = () => {
     api.get(`/notes?search=${search}`, { headers: { Authorization: `Bearer ${authUser.token} ` } }).then(resp => {
-      return setNotes(resp.data.notes)
+      return setNotes(resp.data.notes.title)
     }).catch((err) => {
       alert('Nota não encontrada!')
     })
@@ -65,19 +76,17 @@ function SideBar({ showProfile, setShowProfile, history, match }) {
         value={search}
         onChange={e => setSearch(e.target.value)}
         onKeyPress={e => {
-          if(e.key === 'Enter') {
+          if (e.key === 'Enter') {
             searchBox()
           }
         }}
         placeholder="Pesquisar" />
 
-      <AllNotes>
-
-        <LinkNote onClick={() => history.push('/edit/1')}>Detalhes da nota</LinkNote>
-        <LinkNote onClick={() => history.push('/edit/1')}>Detalhes da nota</LinkNote>
-        <LinkNote onClick={() => history.push('/edit/1')}>Detalhes da nota</LinkNote>
-        <LinkNote onClick={() => history.push('/edit/1')}>Detalhes da nota</LinkNote>
-      </AllNotes>
+      {notes.map(note => (
+        <AllNotes key={note.id}>
+          <LinkNote onClick={() => history.push('/edit/1')}>{note.title}</LinkNote>
+        </AllNotes>
+      ))}
       <Logo src={ImageLogo} />
     </Container>
   )
